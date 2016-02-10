@@ -405,7 +405,6 @@ module.exports = function (grunt) {
       'autoprefixer:server',
       'connect:livereload',
       'watch',
-	  'jshint'
     ]);
   });
 
@@ -420,8 +419,7 @@ module.exports = function (grunt) {
     'concurrent:test',
     'autoprefixer',
     'connect:test',
-    'karma',
-	'jshint'
+    'karma'
   ]);
 
   grunt.registerTask('build', [
@@ -437,15 +435,12 @@ module.exports = function (grunt) {
     'cssmin',
     'uglify',
     'filerev',
-    'usemin',
-    'htmlmin',
-	'jshint'
+    'usemin'
   ]);
 
   grunt.registerTask('default', [
    // 'newer:jshint',
     'test',
-    'build',
-	'jshint'
+    'build'
   ]);
 };
