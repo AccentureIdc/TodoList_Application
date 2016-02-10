@@ -35,14 +35,14 @@ module.exports = function (grunt) {
       },
       js: {
         files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
-        //tasks: ['newer:jshint:all'],
+        tasks: ['newer:jshint:all'],
         options: {
           livereload: '<%= connect.options.livereload %>'
         }
       },
       jsTest: {
         files: ['test/spec/{,*/}*.js'],
-        tasks: ['karma']
+        tasks: ['newer:jshint:test', 'karma']
       },
       styles: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
@@ -51,7 +51,6 @@ module.exports = function (grunt) {
       gruntfile: {
         files: ['Gruntfile.js']
       },
-	  
       livereload: {
         options: {
           livereload: '<%= connect.options.livereload %>'
@@ -121,8 +120,11 @@ module.exports = function (grunt) {
       options: {
         jshintrc: '.jshintrc',
         reporter: require('jshint-stylish'),
+        reporter: require('jshint-html-reporter'),
+        reporterOutput: 'jshint-report.html',
 		jQuery: true
       },
+      target: ['app/**/*.js', 'app/scripts/**/*.js', 'test/spec/**/*.js'],
       all: {
         src: [
           'Gruntfile.js',
@@ -405,6 +407,7 @@ module.exports = function (grunt) {
       'autoprefixer:server',
       'connect:livereload',
       'watch',
+	  'jshint'
     ]);
   });
 
@@ -435,12 +438,14 @@ module.exports = function (grunt) {
     'cssmin',
     'uglify',
     'filerev',
-    'usemin'
+    'usemin',
+    'htmlmin'
   ]);
 
   grunt.registerTask('default', [
    // 'newer:jshint',
     'test',
-    'build'
+    'build',
+	'jshint'
   ]);
 };
