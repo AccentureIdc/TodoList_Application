@@ -44,6 +44,26 @@ module.exports = function(config) {
     // list of files / patterns to exclude
     exclude: [
     ],
+    
+    reporters: ['progress', 'html'],
+ 
+    // the default configuration 
+    htmlReporter: {
+      //outputDir: 'test/report/', // where to put the reports  
+      outputFile: 'test/report/ReportSummary/units.html',
+      templatePath: null, // set if you moved jasmine_template.html 
+      focusOnFailures: false, // reports show failures on start 
+      namedFiles: false, // name files instead of creating sub-directories 
+      pageTitle: 'App Modernization Test Report', // page title for reports; browser info by default 
+      urlFriendlyName: false, // simply replaces spaces with _ for files/dirs 
+      reportName: 'ReportSummary', // report summary filename; browser info by default 
+      'subPageTitle': 'A sample project description',
+      // experimental 
+      preserveDescribeNesting: false, // folded suites stay folded  
+      foldAll: false, // reports start folded (only with preserveDescribeNesting) 
+    },  
+      
+      
 
     // web server port
     port: 9000,
@@ -57,13 +77,18 @@ module.exports = function(config) {
     // - PhantomJS
     // - IE (only Windows)
     browsers: [
-      "PhantomJS"
+      "PhantomJS",
+      "Chrome",
+      "Safari"
     ],
 
     // Which plugins to enable
     plugins: [
+      "karma-chrome-launcher",
+      "karma-safari-launcher",
       "karma-phantomjs-launcher",
-      "karma-jasmine"
+      "karma-jasmine",
+     "karma-htmlfile-reporter"
     ],
 
     // Continuous Integration mode
