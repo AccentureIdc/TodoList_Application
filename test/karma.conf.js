@@ -50,7 +50,7 @@ module.exports = function(config) {
     // the default configuration 
     htmlReporter: {
       //outputDir: 'test/report/', // where to put the reports  
-      outputFile: 'test/report/ReportSummary/units.html',
+      outputFile: 'test/report/ReportSummary/test_report.html',
       templatePath: null, // set if you moved jasmine_template.html 
       focusOnFailures: false, // reports show failures on start 
       namedFiles: false, // name files instead of creating sub-directories 
