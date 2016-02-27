@@ -4,7 +4,7 @@
 // generator-karma 1.0.1
 
 module.exports = function(config) {
-  'use strict';
+//  'use strict';
 
   config.set({
     // enable / disable watching file and executing tests whenever any file changes
@@ -44,8 +44,20 @@ module.exports = function(config) {
     // list of files / patterns to exclude
     exclude: [
     ],
+      
+      // preprocess matching files before serving them to the browser
+    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
+    preprocessors: {'src/**/*.js':['coverage'],
+                    'test/**/*.js':['coverage'],
+                    'app.js':['coverage']
+    },
+      
+    coverageReporter: {
+        type:'html',
+        dir:'coverage/'
+    },
     
-    reporters: ['progress', 'html'],
+    reporters: ['progress', 'coverage','html'],
  
     // the default configuration 
     htmlReporter: {
@@ -62,8 +74,6 @@ module.exports = function(config) {
       preserveDescribeNesting: false, // folded suites stay folded  
       foldAll: false, // reports start folded (only with preserveDescribeNesting) 
     },  
-      
-      
 
     // web server port
     port: 9000,
@@ -77,7 +87,8 @@ module.exports = function(config) {
     // - PhantomJS
     // - IE (only Windows)
     browsers: [
-      "PhantomJS"
+      "PhantomJS",
+      "Chrome"
     ],
 
     // Which plugins to enable
@@ -86,7 +97,8 @@ module.exports = function(config) {
       "karma-safari-launcher",
       "karma-phantomjs-launcher",
       "karma-jasmine",
-     "karma-htmlfile-reporter"
+     "karma-htmlfile-reporter",
+        "karma-coverage"
     ],
 
     // Continuous Integration mode
